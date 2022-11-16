@@ -11,13 +11,35 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
-const sharing_module_1 = require("./sharing/sharing.module");
 const drivers_module_1 = require("./drivers/drivers.module");
+const cars_module_1 = require("./cars/cars.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
+const user_entity_1 = require("./users/entity/user.entity");
+const driver_entity_1 = require("./drivers/entity/driver.entity");
+const car_entity_1 = require("./cars/entity/car.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, sharing_module_1.SharingModule, drivers_module_1.DriversModule],
+        imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'mysql',
+                host: process.env.DB_HOST,
+                port: +process.env.DB_PORT,
+                username: process.env.DB_USERNAME,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_NAME,
+                entities: [user_entity_1.User, driver_entity_1.Driver, car_entity_1.Car],
+                synchronize: true,
+            }),
+            users_module_1.UsersModule,
+            drivers_module_1.DriversModule,
+            cars_module_1.CarsModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

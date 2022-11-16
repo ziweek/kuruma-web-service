@@ -1,6 +1,6 @@
 export declare class CreateDriverDto {
     name: string;
-    phone: string;
+    phone: number;
     email: string;
     password: string;
 }
