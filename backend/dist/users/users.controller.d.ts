@@ -1,8 +1,11 @@
-import { CreateUserDto } from './CreateUserDto';
+import { User } from './entity/user.entity';
+import { UsersService } from './users.service';
 export declare class UsersController {
-    createUser(createUserDto: CreateUserDto): string;
-    readAllUser(): string;
-    readOneUser(param: any): string;
-    updateUser(param: any, createUserDto: CreateUserDto): string;
-    deleteUser(param: any): string;
+    private userService;
+    constructor(userService: UsersService);
+    findUserAll(): Promise<User[]>;
+    findUserOne(param: any): Promise<User>;
+    createUser(user: User): void;
+    updateUser(param: any, user: User): void;
+    deleteUser(param: any): void;
 }

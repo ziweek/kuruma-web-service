@@ -7,35 +7,35 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateDriverDto } from './CreateDriverDto';
+import { DriversService } from './drivers.service';
+import { Driver } from './entity/driver.entity';
 
 @Controller('drivers')
 export class DriversController {
-  @Post()
-  createDriver(@Body() createDriverDto: CreateDriverDto): string {
-    return `this action returns ${createDriverDto.name.toString()}`;
-  }
+  constructor(private driverService: DriversService) {}
 
   @Get()
-  readAllDriver(): string {
-    return `this action returns all Drivers`;
+  readDriverAll() {
+    return this.driverService.findDriverAll();
   }
 
   @Get(':id')
-  readOneDriver(@Param() param): string {
-    return `this actiion returns ${param.id}`;
+  readOneDriver(@Param() param) {
+    return this.driverService.findDriverOne(param.id);
   }
 
-  @Patch(':id')
-  updateDriver(
-    @Param() param,
-    @Body() createDriverDto: CreateDriverDto,
-  ): string {
-    return `this action update ${param.id}`;
+  @Post()
+  createDriver(@Body() driver: Driver) {
+    this.driverService.createDriver(driver);
   }
 
   @Delete(':id')
-  deleteDriver(@Param() param): string {
-    return `this action delete ${param.id}`;
+  deleteDriver(@Param() param) {
+    this.driverService.deleteDriver(param.id);
+  }
+
+  @Patch(':id')
+  updateDriver(@Param() param, @Body() driver: Driver) {
+    this.driverService.updateDriver(param.id, driver);
   }
 }

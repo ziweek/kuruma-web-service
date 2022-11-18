@@ -14,61 +14,66 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DriversController = void 0;
 const common_1 = require("@nestjs/common");
-const CreateDriverDto_1 = require("./CreateDriverDto");
+const drivers_service_1 = require("./drivers.service");
+const driver_entity_1 = require("./entity/driver.entity");
 let DriversController = class DriversController {
-    createDriver(createDriverDto) {
-        return `this action returns ${createDriverDto.name.toString()}`;
+    constructor(driverService) {
+        this.driverService = driverService;
     }
-    readAllDriver() {
-        return `this action returns all Drivers`;
+    readDriverAll() {
+        return this.driverService.findDriverAll();
     }
     readOneDriver(param) {
-        return `this actiion returns ${param.id}`;
+        return this.driverService.findDriverOne(param.id);
     }
-    updateDriver(param, createDriverDto) {
-        return `this action update ${param.id}`;
+    createDriver(driver) {
+        this.driverService.createDriver(driver);
     }
     deleteDriver(param) {
-        return `this action delete ${param.id}`;
+        this.driverService.deleteDriver(param.id);
+    }
+    updateDriver(param, driver) {
+        this.driverService.updateDriver(param.id, driver);
     }
 };
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [CreateDriverDto_1.CreateDriverDto]),
-    __metadata("design:returntype", String)
-], DriversController.prototype, "createDriver", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], DriversController.prototype, "readAllDriver", null);
+    __metadata("design:returntype", void 0)
+], DriversController.prototype, "readDriverAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", void 0)
 ], DriversController.prototype, "readOneDriver", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)()),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, CreateDriverDto_1.CreateDriverDto]),
-    __metadata("design:returntype", String)
-], DriversController.prototype, "updateDriver", null);
+    __metadata("design:paramtypes", [driver_entity_1.Driver]),
+    __metadata("design:returntype", void 0)
+], DriversController.prototype, "createDriver", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", void 0)
 ], DriversController.prototype, "deleteDriver", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, driver_entity_1.Driver]),
+    __metadata("design:returntype", void 0)
+], DriversController.prototype, "updateDriver", null);
 DriversController = __decorate([
-    (0, common_1.Controller)('drivers')
+    (0, common_1.Controller)('drivers'),
+    __metadata("design:paramtypes", [drivers_service_1.DriversService])
 ], DriversController);
 exports.DriversController = DriversController;
 //# sourceMappingURL=drivers.controller.js.map

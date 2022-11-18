@@ -7,32 +7,35 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateUserDto } from './CreateUserDto';
+import { User } from './entity/user.entity';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  @Post()
-  createUser(@Body() createUserDto: CreateUserDto): string {
-    return `this action returns ${createUserDto.name.toString()}`;
-  }
+  constructor(private userService: UsersService) {}
 
   @Get()
-  readAllUser(): string {
-    return `this action returns all users`;
+  findUserAll() {
+    return this.userService.findUserAll();
   }
 
   @Get(':id')
-  readOneUser(@Param() param): string {
-    return `this actiion returns ${param.id}`;
+  findUserOne(@Param() param) {
+    return this.userService.findUserOne(param.id);
+  }
+
+  @Post()
+  createUser(@Body() user: User) {
+    this.userService.createUser(user);
   }
 
   @Patch(':id')
-  updateUser(@Param() param, @Body() createUserDto: CreateUserDto): string {
-    return `this action update ${param.id}`;
+  updateUser(@Param() param, @Body() user: User) {
+    this.userService.updateUser(param.id, user);
   }
 
   @Delete(':id')
-  deleteUser(@Param() param): string {
-    return `this action delete ${param.id}`;
+  deleteUser(@Param() param) {
+    this.userService.deleteUser(param.id);
   }
 }

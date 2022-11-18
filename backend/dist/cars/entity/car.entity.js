@@ -24,6 +24,10 @@ __decorate([
     __metadata("design:type", String)
 ], Car.prototype, "name", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Car.prototype, "seat", void 0);
+__decorate([
     (0, typeorm_1.OneToOne)(() => driver_entity_1.Driver),
     (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.car),
     __metadata("design:type", Array)

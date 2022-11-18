@@ -9,7 +9,7 @@ export class Driver {
   name: string;
 
   @Column()
-  phone: number;
+  phone: string;
 
   @Column()
   email: string;

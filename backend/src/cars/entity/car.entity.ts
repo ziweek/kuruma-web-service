@@ -16,6 +16,9 @@ export class Car {
   @Column()
   name: string;
 
+  @Column()
+  seat: number;
+
   @OneToOne(() => Driver)
   @OneToMany(() => User, (user) => user.car)
   passenger: User[];

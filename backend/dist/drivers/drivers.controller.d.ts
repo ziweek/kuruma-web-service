@@ -1,8 +1,11 @@
-import { CreateDriverDto } from './CreateDriverDto';
+import { DriversService } from './drivers.service';
+import { Driver } from './entity/driver.entity';
 export declare class DriversController {
-    createDriver(createDriverDto: CreateDriverDto): string;
-    readAllDriver(): string;
-    readOneDriver(param: any): string;
-    updateDriver(param: any, createDriverDto: CreateDriverDto): string;
-    deleteDriver(param: any): string;
+    private driverService;
+    constructor(driverService: DriversService);
+    readDriverAll(): Promise<Driver[]>;
+    readOneDriver(param: any): Promise<Driver>;
+    createDriver(driver: Driver): void;
+    deleteDriver(param: any): void;
+    updateDriver(param: any, driver: Driver): void;
 }

@@ -1,7 +1,7 @@
 export declare class Driver {
     id: number;
     name: string;
-    phone: number;
+    phone: string;
     email: string;
     password: string;
 }
