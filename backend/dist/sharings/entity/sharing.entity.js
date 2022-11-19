@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", car_entity_1.Car)
 ], Sharing.prototype, "car", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.id, { nullable: true }),
+    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.sharing, { nullable: true }),
     __metadata("design:type", Array)
 ], Sharing.prototype, "passengers", void 0);
 Sharing = __decorate([

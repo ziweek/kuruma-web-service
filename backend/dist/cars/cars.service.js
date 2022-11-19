@@ -15,13 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("../users/entity/user.entity");
 const typeorm_2 = require("typeorm");
 const car_entity_1 = require("./entity/car.entity");
 let CarsService = class CarsService {
-    constructor(carRepository, userRepository) {
+    constructor(carRepository) {
         this.carRepository = carRepository;
-        this.userRepository = userRepository;
     }
     async findCarAll() {
         return this.carRepository.find();
@@ -47,9 +45,7 @@ let CarsService = class CarsService {
 CarsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(car_entity_1.Car)),
-    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], CarsService);
 exports.CarsService = CarsService;
 //# sourceMappingURL=cars.service.js.map

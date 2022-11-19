@@ -15,17 +15,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SharingsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const user_entity_1 = require("../users/entity/user.entity");
 const typeorm_2 = require("typeorm");
 const sharing_entity_1 = require("./entity/sharing.entity");
 let SharingsService = class SharingsService {
-    constructor(sharingsRepository) {
+    constructor(sharingsRepository, userRepository) {
         this.sharingsRepository = sharingsRepository;
+        this.userRepository = userRepository;
     }
     async findSharingAll() {
-        return this.sharingsRepository.find();
+        return this.sharingsRepository.find({ relations: ['author', 'car'] });
     }
     async findSharingOne(id) {
-        return this.sharingsRepository.findOneBy({ id });
+        return this.sharingsRepository.findOne({
+            where: { id: id },
+            relations: ['author', 'car'],
+        });
     }
     async createSharing(sharing) {
         this.sharingsRepository.save(sharing);
@@ -42,11 +47,24 @@ let SharingsService = class SharingsService {
             passengers: sharing.passengers,
         });
     }
+    async addPassenger(id, addPassengerDto) {
+        const targetSharing = await this.sharingsRepository.findOne({
+            where: { id: id },
+            relations: ['passengers'],
+        });
+        const targetUser = await this.userRepository.findOne({
+            where: { id: addPassengerDto.passengerId },
+        });
+        targetSharing.passengers.push(targetUser);
+        await this.sharingsRepository.save(targetSharing);
+    }
 };
 SharingsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(sharing_entity_1.Sharing)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], SharingsService);
 exports.SharingsService = SharingsService;
 //# sourceMappingURL=sharings.service.js.map

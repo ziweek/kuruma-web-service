@@ -14,11 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SharingsController = void 0;
 const common_1 = require("@nestjs/common");
+const addPassengerDto_1 = require("./dto/addPassengerDto");
 const sharing_entity_1 = require("./entity/sharing.entity");
 const sharings_service_1 = require("./sharings.service");
 let SharingsController = class SharingsController {
     constructor(sharingsService) {
         this.sharingsService = sharingsService;
+    }
+    addPassenger(param, addPassengerDto) {
+        this.sharingsService.addPassenger(param.id, addPassengerDto);
     }
     findSharingAll() {
         return this.sharingsService.findSharingAll();
@@ -36,6 +40,14 @@ let SharingsController = class SharingsController {
         this.sharingsService.deleteSharing(param.id);
     }
 };
+__decorate([
+    (0, common_1.Patch)('addPassenger/:id'),
+    __param(0, (0, common_1.Param)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, addPassengerDto_1.AddPassengerDto]),
+    __metadata("design:returntype", void 0)
+], SharingsController.prototype, "addPassenger", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

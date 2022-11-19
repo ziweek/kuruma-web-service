@@ -1,5 +1,4 @@
-export declare class Driver {
-    id: number;
+export declare class CreateUserDto {
     name: string;
     phone: string;
     email: string;

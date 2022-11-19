@@ -26,6 +26,7 @@ export class User {
 
   @ManyToOne(() => Sharing, (sharing) => sharing.passengers, {
     onDelete: 'CASCADE',
+    eager: true,
   })
   sharing: Sharing;
 }

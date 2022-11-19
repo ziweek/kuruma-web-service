@@ -4,7 +4,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -29,6 +28,6 @@ export class Sharing {
   @JoinColumn()
   car: Car;
 
-  @ManyToOne(() => User, (user) => user.id, { nullable: true })
+  @OneToMany(() => User, (user) => user.sharing, { nullable: true })
   passengers: User[];
 }

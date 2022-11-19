@@ -7,12 +7,19 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { User } from 'src/users/entity/user.entity';
+import { AddPassengerDto } from './dto/addPassengerDto';
 import { Sharing } from './entity/sharing.entity';
 import { SharingsService } from './sharings.service';
 
 @Controller('sharings')
 export class SharingsController {
   constructor(private sharingsService: SharingsService) {}
+
+  @Patch('addPassenger/:id')
+  addPassenger(@Param() param, @Body() addPassengerDto: AddPassengerDto) {
+    this.sharingsService.addPassenger(param.id, addPassengerDto);
+  }
 
   @Get()
   findSharingAll() {

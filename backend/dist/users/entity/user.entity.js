@@ -37,6 +37,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.ManyToOne)(() => sharing_entity_1.Sharing, (sharing) => sharing.passengers, {
         onDelete: 'CASCADE',
+        eager: true,
     }),
     __metadata("design:type", sharing_entity_1.Sharing)
 ], User.prototype, "sharing", void 0);
