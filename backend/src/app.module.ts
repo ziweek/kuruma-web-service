@@ -2,13 +2,16 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { DriversModule } from './drivers/drivers.module';
+
 import { CarsModule } from './cars/cars.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/entity/user.entity';
-import { Driver } from './drivers/entity/driver.entity';
+
 import { Car } from './cars/entity/car.entity';
+
+import { Sharing } from './sharings/entity/sharing.entity';
+import { SharingsModule } from './sharings/sharings.module';
 
 @Module({
   imports: [
@@ -24,12 +27,12 @@ import { Car } from './cars/entity/car.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
 
-      entities: [User, Driver, Car],
+      entities: [User, Car, Sharing],
       synchronize: true,
     }),
     UsersModule,
-    DriversModule,
     CarsModule,
+    SharingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

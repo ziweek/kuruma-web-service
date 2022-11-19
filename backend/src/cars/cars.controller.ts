@@ -7,13 +7,17 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { MissingDeleteDateColumnError } from 'typeorm';
 import { CarsService } from './cars.service';
 import { Car } from './entity/car.entity';
 
 @Controller('cars')
 export class CarsController {
   constructor(private carService: CarsService) {}
+
+  // @Patch('addPassenger/:id')
+  // addUser(@Param() param, @Body() addUserDto: AddUserDto) {
+  //   this.carService.addUserToCar(param.id, addUserDto);
+  // }
 
   @Get()
   findCarAll() {

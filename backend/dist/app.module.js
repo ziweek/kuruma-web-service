@@ -11,13 +11,13 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
-const drivers_module_1 = require("./drivers/drivers.module");
 const cars_module_1 = require("./cars/cars.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const user_entity_1 = require("./users/entity/user.entity");
-const driver_entity_1 = require("./drivers/entity/driver.entity");
 const car_entity_1 = require("./cars/entity/car.entity");
+const sharing_entity_1 = require("./sharings/entity/sharing.entity");
+const sharings_module_1 = require("./sharings/sharings.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,12 +33,12 @@ AppModule = __decorate([
                 username: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_NAME,
-                entities: [user_entity_1.User, driver_entity_1.Driver, car_entity_1.Car],
+                entities: [user_entity_1.User, car_entity_1.Car, sharing_entity_1.Sharing],
                 synchronize: true,
             }),
             users_module_1.UsersModule,
-            drivers_module_1.DriversModule,
             cars_module_1.CarsModule,
+            sharings_module_1.SharingsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

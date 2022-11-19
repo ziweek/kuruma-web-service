@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const car_entity_1 = require("../../cars/entity/car.entity");
+const sharing_entity_1 = require("../../sharings/entity/sharing.entity");
 const typeorm_1 = require("typeorm");
 let User = class User {
 };
@@ -35,9 +35,11 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => car_entity_1.Car, (car) => car.passenger),
-    __metadata("design:type", car_entity_1.Car)
-], User.prototype, "car", void 0);
+    (0, typeorm_1.ManyToOne)(() => sharing_entity_1.Sharing, (sharing) => sharing.passengers, {
+        onDelete: 'CASCADE',
+    }),
+    __metadata("design:type", sharing_entity_1.Sharing)
+], User.prototype, "sharing", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

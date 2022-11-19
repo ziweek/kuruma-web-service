@@ -7,12 +7,18 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Car } from 'src/cars/entity/car.entity';
 import { User } from './entity/user.entity';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private userService: UsersService) {}
+
+  // @Patch('matchCar/:id')
+  // assignCar(@Param() param, @Body() car: Car) {
+  //   this.userService.matchCar(param.id, car);
+  // }
 
   @Get()
   findUserAll() {

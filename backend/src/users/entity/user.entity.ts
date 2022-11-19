@@ -1,5 +1,11 @@
-import { Car } from 'src/cars/entity/car.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Sharing } from 'src/sharings/entity/sharing.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -18,6 +24,8 @@ export class User {
   @Column()
   password: string;
 
-  @ManyToOne(() => Car, (car) => car.passenger)
-  car: Car;
+  @ManyToOne(() => Sharing, (sharing) => sharing.passengers, {
+    onDelete: 'CASCADE',
+  })
+  sharing: Sharing;
 }
