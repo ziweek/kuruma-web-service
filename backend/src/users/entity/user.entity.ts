@@ -1,3 +1,4 @@
+import { UserAuthority } from 'src/auth/entity/user-authority.entity';
 import { Sharing } from 'src/sharings/entity/sharing.entity';
 import {
   Column,
@@ -23,6 +24,11 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => UserAuthority, (userAuthority) => userAuthority.user, {
+    eager: true,
+  })
+  authorities?: UserAuthority[];
 
   @ManyToOne(() => Sharing, (sharing) => sharing.passengers, {
     onDelete: 'CASCADE',

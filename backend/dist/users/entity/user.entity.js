@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const user_authority_entity_1 = require("../../auth/entity/user-authority.entity");
 const sharing_entity_1 = require("../../sharings/entity/sharing.entity");
 const typeorm_1 = require("typeorm");
 let User = class User {
@@ -34,6 +35,12 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_authority_entity_1.UserAuthority, (userAuthority) => userAuthority.user, {
+        eager: true,
+    }),
+    __metadata("design:type", Array)
+], User.prototype, "authorities", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => sharing_entity_1.Sharing, (sharing) => sharing.passengers, {
         onDelete: 'CASCADE',
