@@ -1,21 +1,25 @@
 import Layout from "../components/layout";
-import Card from "../components/chatroom/chatcard";
 import Message from "../components/chatroom/message";
+import ChatCard from "../components/chatroom/chatcard";
 
 export default function ChatRoom() {
   return (
     <>
       <Layout>
-        <div className="px-3 pl-10 py-5">
-          <Card></Card>
+        <div className="pb-20">
+          <ChatCard type="send" />
+          <ChatCard type="receive" />
+          <ChatCard type="send" />
+          <ChatCard type="receive" />
+          <ChatCard type="send" />
+          <ChatCard type="receive" />
+          <ChatCard type="send" />
+          <ChatCard type="receive" />
         </div>
-        <div className="px-3 pr-10 py-5">
-          <Card></Card>
+        <div className="fixed bottom-0">
+          <Message className="w-full" />
         </div>
       </Layout>
-      <div className="flex z-10 min-h-screen">
-        <Message />
-      </div>
     </>
   );
 }

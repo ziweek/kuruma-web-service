@@ -14,7 +14,7 @@ export default function Home() {
 
       <div>
         {/* <Layout> */}
-        <Login></Login>
+        <Login />
         {/* </Layout> */}
       </div>
     </div>

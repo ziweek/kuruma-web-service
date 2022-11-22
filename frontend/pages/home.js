@@ -5,21 +5,12 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <div>
-          <div className="px-5 py-3">
-            <Card></Card>
+        <div className="flex flex-col items-center justify-center min-h-screen">
+          <div className="flex flex-col px-5 py-3">
+            <Card />
           </div>
-          <div className="px-5 py-3">
-            <Card></Card>
-          </div>
-          <div className="px-5 py-3">
-            <Card></Card>
-          </div>
-          <div className="px-5 py-3">
-            <Card></Card>
-          </div>
-          <div className="px-5 py-3">
-            <Card></Card>
+          <div className="flex flex-col px-5 py-3">
+            <Card />
           </div>
         </div>
       </Layout>
