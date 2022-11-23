@@ -1,6 +1,13 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
+  "/api/hello": "pages/api/hello.js",
+  "/home": "pages/home.html",
+  "/chatroom": "pages/chatroom.html",
+  "/": "pages/index.html",
+  "/congratulations": "pages/congratulations.html",
+  "/register": "pages/register.html",
+  "/posting": "pages/posting.html",
   "/_document": "pages/_document.js",
-  "/congratulations": "pages/congratulations.js"
+  "/404": "pages/404.html"
 }
