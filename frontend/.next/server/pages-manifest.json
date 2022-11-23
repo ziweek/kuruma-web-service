@@ -2,8 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/register": "pages/register.js",
-  "/congratulations": "pages/congratulations.js",
-  "/chatroom": "pages/chatroom.js",
-  "/home": "pages/home.js"
+  "/congratulations": "pages/congratulations.js"
 }
