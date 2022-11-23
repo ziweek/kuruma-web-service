@@ -7,13 +7,45 @@ export default function Register() {
             for="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Your email
+            Your Name
           </label>
           <input
             type="email"
             id="email"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            placeholder="name@flowbite.com"
+            placeholder="윤타밤"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <label
+            for="email"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Your Phone
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="01012345678"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <label
+            for="email"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Your Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="name@korea.ac.kr"
             required
           />
         </div>
@@ -60,21 +92,23 @@ export default function Register() {
             for="terms"
             className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
-            I agree with the{" "}
             <a
               href="#"
               className="text-blue-600 hover:underline dark:text-blue-500"
             >
-              terms and conditions
+              개인정보에 관한 약관
             </a>
+            에 동의합니다.
           </label>
         </div>
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          <a href="/congratulations">Register new account</a>
-        </button>
+        <div className="text-center">
+          <button
+            type="submit"
+            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            <a href="/congratulations">타밤 회원으로 가입하기</a>
+          </button>
+        </div>
       </form>
     </>
   );

@@ -16,8 +16,8 @@ export default function Home() {
       </Head>
 
       <Layout>
-        <div className="flex items-center justify-center min-h-screen">
-          <Register />
+        <div className="flex flex-col items-center justify-center">
+          <Register className="flex" />
         </div>
       </Layout>
     </div>
