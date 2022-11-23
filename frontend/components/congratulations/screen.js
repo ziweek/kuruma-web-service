@@ -4,8 +4,8 @@ export default function Screen() {
   return (
     <>
       <div className="flex bg-[#1F2B44] min-h-screen item-center justify-center">
-        <div className="flex flex-col item-center justify-center text-white text-center z-0">
-          <ConfirmAnimation />
+        <div className="flex flex-col items-center justify-center text-white text-center z-0">
+          <ConfirmAnimation className="w-full" />
           <h1 className="text-[#F2C148] text-4xl font-bold py-5">TABAM</h1>
           <h2 className="text-gray-300 text-2xl font-bold">
             가입을 축하합니다.

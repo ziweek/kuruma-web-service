@@ -8,11 +8,6 @@ import lottieJson from "../../public/lotties/confirmation.json";
 
 export default function ConfirmAnimation() {
   return (
-    <Lottie
-      loop={0}
-      animationData={lottieJson}
-      play
-      //   style={{ width: 150, height: 150 }}
-    />
+    <Lottie loop={0} animationData={lottieJson} play style={{ width: 150 }} />
   );
 }
