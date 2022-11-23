@@ -18,14 +18,38 @@ export default function ChatRoom() {
 
       <Layout>
         <div className="pb-20">
-          <ChatCard type="send" />
-          <ChatCard type="receive" />
-          <ChatCard type="send" />
-          <ChatCard type="receive" />
-          <ChatCard type="send" />
-          <ChatCard type="receive" />
-          <ChatCard type="send" />
-          <ChatCard type="receive" />
+          <ChatCard
+            type="send"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
+          />
+          <ChatCard
+            type="receive"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다. 풍부하게 끓는 같지 불어 보내는 그리하였는가? 얼마나 피에 품에 같은 같이, 피부가 피다. 보이는 가지에 곳으로 품고 반짝이는 맺어, 위하여, 놀이 것이다. 목숨이 없으면 우리 품에 밥을 타오르고 너의 것이다. 안고, 거선의 타오르고 뿐이다. 우리의 커다란 아니한 있다. 우리의 그러므로 이상의 그들은 길을 그들의 미묘한 그들에게 그리하였는가?"
+          />
+          <ChatCard
+            type="send"
+            text="언덕 북간도에 이름자를 슬퍼하는 아무 가슴속에 어머니 별이 파란 듯합니다. 어머님, 무성할 무엇인지 있습니다. 별 이름자 이네들은 까닭입니다. 프랑시스 우는 별 계절이 아무 쓸쓸함과 별에도 별빛이 있습니다."
+          />
+          <ChatCard
+            type="receive"
+            text="언덕 북간도에 이름자를 슬퍼하는 아무 가슴속에 어머니 별이 파란 듯합니다. 어머님, 무성할 무엇인지 있습니다. 별 이름자 이네들은 까닭입니다. 프랑시스 우는 별 계절이 아무 쓸쓸함과 별에도 별빛이 있습니다."
+          />
+          <ChatCard
+            type="send"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
+          />
+          <ChatCard
+            type="receive"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
+          />
+          <ChatCard
+            type="send"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
+          />
+          <ChatCard
+            type="receive"
+            text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
+          />
         </div>
         <div className="fixed bottom-0">
           <Message className="w-full" />

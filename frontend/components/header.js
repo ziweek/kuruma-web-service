@@ -1,17 +1,16 @@
+import Image from "next/image";
+import imgLogoMoon from "../public/images/logo_moon_64.png";
+
 export default function Header() {
   return (
     <>
       <header>
         <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 w-full">
           <div className="container flex flex-wrap items-center justify-between mx-auto">
-            <a href="https://flowbite.com/" className="flex items-center">
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-6 mr-3 sm:h-9"
-                alt="Flowbite Logo"
-              />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+            <a href="/home" className="flex items-center">
+              <Image src={imgLogoMoon} alt="Flowbite Logo" height={30} />
+              <span className="pl-2.5 self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                TABAM
               </span>
             </a>
             <button

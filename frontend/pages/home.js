@@ -3,16 +3,12 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import PostDetail from "../components/home/postDetail";
 import { useEffect, useState } from "react";
+import { Modal } from "flowbite-react";
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const [isVisibleForBottomDrawer, setisVisibleForBottomDrawer] =
     useState(false);
-  useEffect(() => {}, []);
-  const toggleDrawer = () => {
-    setisVisibleForBottomDrawer(!isVisibleForBottomDrawer);
-    console.log(isVisibleForBottomDrawer);
-  };
-
   return (
     <div>
       <Head>
@@ -21,24 +17,11 @@ export default function Home() {
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-        ></meta>
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button
-        className={isVisibleForBottomDrawer ? "block" : "hidden"}
-        onClick={toggleDrawer}
-      >
-        <div
-          className={
-            isVisibleForBottomDrawer
-              ? "fixed flex flex-col items-center justify-center w-full h-full z-10 bg-black/70"
-              : "hidden"
-          }
-        ></div>
-      </button>
       <Layout>
-        <button onClick={toggleDrawer}>adfasdfaf</button>
         <div className="flex flex-col items-center justify-center min-h-screen">
           <div className="flex flex-col px-5 py-3">
             <Card />
@@ -52,6 +35,7 @@ export default function Home() {
           <div className="flex flex-col px-5 py-3">
             <Card />
           </div>
+
           <div className="fixed bottom-0 z-20">
             <div className={isVisibleForBottomDrawer ? "block" : "hidden"}>
               <PostDetail />

@@ -4,7 +4,7 @@ export default function PostDetail() {
       <div
         id="drawer-bottom-example"
         className="z-40 w-full p-4 overflow-y-auto bg-white dark:bg-gray-800"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="drawer-bottom-label"
       >
         <h5

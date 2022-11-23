@@ -9,9 +9,15 @@ export default function ChatCard(prop) {
               : "flex px-3 pl-10 py-5 items-center justify-end"
           }
         >
-          <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div
+            class={
+              prop.type === "receive"
+                ? "bg-[#CBCDD1] max-w-sm p-3 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+                : "bg-[#F2C148] max-w-sm p-3 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+            }
+          >
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
+              {prop.text}
             </p>
           </div>
         </div>
