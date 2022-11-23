@@ -16,6 +16,7 @@ exports.EventsGateway = void 0;
 const websockets_1 = require("@nestjs/websockets");
 const socket_io_1 = require("socket.io");
 const common_1 = require("@nestjs/common");
+let createdRooms = [];
 let EventsGateway = class EventsGateway {
     constructor() {
         this.logger = new common_1.Logger('Gateway');
@@ -26,32 +27,61 @@ let EventsGateway = class EventsGateway {
         });
     }
     afterInit() {
-        this.nsp.adapter.on('create-room', (room) => {
-            this.logger.log(`Room:${room}이 생성되었습니다.`);
+        this.nsp.adapter.on('delete-room', (room) => {
+            const deletedRoom = createdRooms.find((createdRoom) => createdRoom === room);
+            if (!deletedRoom)
+                return;
+            this.nsp.emit('delete-room', deletedRoom);
+            createdRooms = createdRooms.filter((createdRoom) => createdRoom !== deletedRoom);
         });
-        this.nsp.adapter.on('join-room', (room, id) => {
-            this.logger.log(`Socket:${id}님이 "Room:${room}"에 참여하였습니다.`);
-        });
-        this.nsp.adapter.on('leave-room', (room, id) => {
-            this.logger.log(`Socket:${id}님이 "Room${room}"에서 나가셨습니다.`);
-        });
-        this.nsp.adapter.on('delete-room', (room, id) => {
-            this.logger.log(`Socket:${id}님이 "Room${room}"에서 나가셨습니다.`);
-        });
-        this.logger.log('웹소켓 서버 초기화');
+        this.logger.log('웹소켓 서버 초기화 ✅');
     }
     handleConnection(socket) {
         this.logger.log(`${socket.id} 소켓 연결`);
-        socket.broadcast.emit('message', {
-            message: `${socket.id}가 들어왔습니다.`,
-        });
     }
     handleDisconnect(socket) {
         this.logger.log(`${socket.id} 소켓 연결 해제`);
     }
-    handleMessage(socket, body) {
-        socket.broadcast.emit('message', { username: socket.id, body: body });
-        return { username: socket.id, body };
+    handleMessage(socket, { roomName, message }) {
+        console.log('여기는 message');
+        socket.to(roomName).emit('message', { username: socket.id, message });
+        return { username: socket.id, message };
+    }
+    handleRoomList() {
+        console.log(`room-list ${createdRooms}`);
+        return createdRooms;
+    }
+    handleCreateRoom(socket, roomName) {
+        const exists = createdRooms.find((createdRoom) => createdRoom === roomName);
+        if (exists) {
+            return { success: false, payload: `${roomName} 방이 이미 존재합니다.` };
+        }
+        socket.join(roomName);
+        createdRooms.push(roomName);
+        this.nsp.emit('create-room', roomName);
+        console.log('여기는 create-room');
+        console.log(roomName);
+        console.log(createdRooms);
+        console.log(this.nsp);
+        return { success: true, payload: roomName };
+    }
+    handleJoinRoom(socket, roomName) {
+        socket.join(roomName);
+        socket.broadcast
+            .to(roomName)
+            .emit('message', { message: `${socket.id}가 들어왔습니다.` });
+        console.log('여기는 join-room');
+        console.log(roomName);
+        console.log(socket.id);
+        console.log(socket);
+        return { success: true };
+    }
+    handleLeaveRoom(socket, roomName) {
+        socket.leave(roomName);
+        socket.broadcast
+            .to(roomName)
+            .emit('message', { message: `${socket.id}가 나갔습니다.` });
+        return { success: true };
     }
 };
 __decorate([
@@ -78,6 +108,36 @@ __decorate([
     __metadata("design:paramtypes", [socket_io_1.Socket, Object]),
     __metadata("design:returntype", void 0)
 ], EventsGateway.prototype, "handleMessage", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('room-list'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], EventsGateway.prototype, "handleRoomList", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('create-room'),
+    __param(0, (0, websockets_1.ConnectedSocket)()),
+    __param(1, (0, websockets_1.MessageBody)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, String]),
+    __metadata("design:returntype", void 0)
+], EventsGateway.prototype, "handleCreateRoom", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('join-room'),
+    __param(0, (0, websockets_1.ConnectedSocket)()),
+    __param(1, (0, websockets_1.MessageBody)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, String]),
+    __metadata("design:returntype", void 0)
+], EventsGateway.prototype, "handleJoinRoom", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('leave-room'),
+    __param(0, (0, websockets_1.ConnectedSocket)()),
+    __param(1, (0, websockets_1.MessageBody)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [socket_io_1.Socket, String]),
+    __metadata("design:returntype", void 0)
+], EventsGateway.prototype, "handleLeaveRoom", null);
 EventsGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({ namespace: 'chat' })
 ], EventsGateway);
