@@ -11,16 +11,15 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
-const cars_module_1 = require("./cars/cars.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const user_entity_1 = require("./users/entity/user.entity");
-const car_entity_1 = require("./cars/entity/car.entity");
 const sharing_entity_1 = require("./sharings/entity/sharing.entity");
 const sharings_module_1 = require("./sharings/sharings.module");
 const auth_module_1 = require("./auth/auth.module");
 const events_module_1 = require("./events/events.module");
 const user_authority_entity_1 = require("./auth/entity/user-authority.entity");
+const event_entity_1 = require("./events/entity/event.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -36,11 +35,10 @@ AppModule = __decorate([
                 username: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_NAME,
-                entities: [user_entity_1.User, car_entity_1.Car, sharing_entity_1.Sharing, user_authority_entity_1.UserAuthority],
+                entities: [user_entity_1.User, sharing_entity_1.Sharing, user_authority_entity_1.UserAuthority, event_entity_1.Event],
                 synchronize: true,
             }),
             users_module_1.UsersModule,
-            cars_module_1.CarsModule,
             sharings_module_1.SharingsModule,
             auth_module_1.AuthModule,
             events_module_1.EventsModule,

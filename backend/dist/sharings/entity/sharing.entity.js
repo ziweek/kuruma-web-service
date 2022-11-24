@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Sharing = void 0;
-const car_entity_1 = require("../../cars/entity/car.entity");
+const event_entity_1 = require("../../events/entity/event.entity");
 const user_entity_1 = require("../../users/entity/user.entity");
 const typeorm_1 = require("typeorm");
 let Sharing = class Sharing {
@@ -28,19 +28,23 @@ __decorate([
     __metadata("design:type", String)
 ], Sharing.prototype, "content", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Sharing.prototype, "destination", void 0);
+__decorate([
     (0, typeorm_1.OneToOne)(() => user_entity_1.User),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", user_entity_1.User)
 ], Sharing.prototype, "author", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => car_entity_1.Car, { nullable: true }),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", car_entity_1.Car)
-], Sharing.prototype, "car", void 0);
-__decorate([
     (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.sharing, { nullable: true }),
     __metadata("design:type", Array)
 ], Sharing.prototype, "passengers", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => event_entity_1.Event),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", event_entity_1.Event)
+], Sharing.prototype, "chatroom", void 0);
 Sharing = __decorate([
     (0, typeorm_1.Entity)()
 ], Sharing);

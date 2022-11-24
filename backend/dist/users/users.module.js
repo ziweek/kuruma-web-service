@@ -12,14 +12,14 @@ const users_controller_1 = require("./users.controller");
 const users_service_1 = require("./users.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entity/user.entity");
-const car_entity_1 = require("../cars/entity/car.entity");
 const sharing_entity_1 = require("../sharings/entity/sharing.entity");
 const user_authority_entity_1 = require("../auth/entity/user-authority.entity");
+const event_entity_1 = require("../events/entity/event.entity");
 let UsersModule = class UsersModule {
 };
 UsersModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, car_entity_1.Car, sharing_entity_1.Sharing, user_authority_entity_1.UserAuthority])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, sharing_entity_1.Sharing, user_authority_entity_1.UserAuthority, event_entity_1.Event])],
         exports: [typeorm_1.TypeOrmModule],
         controllers: [users_controller_1.UsersController],
         providers: [users_service_1.UsersService],

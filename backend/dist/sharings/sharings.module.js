@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SharingsModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const car_entity_1 = require("../cars/entity/car.entity");
+const events_module_1 = require("../events/events.module");
 const user_entity_1 = require("../users/entity/user.entity");
 const sharing_entity_1 = require("./entity/sharing.entity");
 const sharings_controller_1 = require("./sharings.controller");
@@ -18,7 +18,7 @@ let SharingsModule = class SharingsModule {
 };
 SharingsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, car_entity_1.Car, sharing_entity_1.Sharing])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, sharing_entity_1.Sharing]), events_module_1.EventsModule],
         exports: [typeorm_1.TypeOrmModule],
         controllers: [sharings_controller_1.SharingsController],
         providers: [sharings_service_1.SharingsService],

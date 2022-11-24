@@ -1,4 +1,4 @@
-import { Car } from 'src/cars/entity/car.entity';
+import { Event } from 'src/events/entity/event.entity';
 import { User } from 'src/users/entity/user.entity';
 import {
   Column,
@@ -20,14 +20,17 @@ export class Sharing {
   @Column()
   content: string;
 
+  @Column()
+  destination: string;
+
   @OneToOne(() => User)
   @JoinColumn()
   author: User;
 
-  @OneToOne(() => Car, { nullable: true })
-  @JoinColumn()
-  car: Car;
-
   @OneToMany(() => User, (user) => user.sharing, { nullable: true })
   passengers: User[];
+
+  @OneToOne(() => Event)
+  @JoinColumn()
+  chatroom: Event;
 }

@@ -15,13 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SharingsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const event_entity_1 = require("../events/entity/event.entity");
 const user_entity_1 = require("../users/entity/user.entity");
 const typeorm_2 = require("typeorm");
 const sharing_entity_1 = require("./entity/sharing.entity");
 let SharingsService = class SharingsService {
-    constructor(sharingsRepository, userRepository) {
+    constructor(sharingsRepository, userRepository, eventRepository) {
         this.sharingsRepository = sharingsRepository;
         this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
     }
     async findSharingAll() {
         return this.sharingsRepository.find({ relations: ['author', 'car'] });
@@ -33,17 +35,17 @@ let SharingsService = class SharingsService {
         });
     }
     async createSharing(sharing) {
-        this.sharingsRepository.save(sharing);
+        await sharing.passengers.push(sharing.author);
+        await this.sharingsRepository.save(sharing);
     }
     async deleteSharing(sharing) {
-        this.sharingsRepository.delete(sharing);
+        await this.sharingsRepository.delete(sharing);
     }
     async updateSharing(id, sharing) {
         this.sharingsRepository.update(id, {
             title: sharing.title,
             content: sharing.content,
             author: sharing.author,
-            car: sharing.car,
             passengers: sharing.passengers,
         });
     }
@@ -58,12 +60,25 @@ let SharingsService = class SharingsService {
         targetSharing.passengers.push(targetUser);
         await this.sharingsRepository.save(targetSharing);
     }
+    async addChatroom(id, addChatroomDto) {
+        const targetSharing = await this.sharingsRepository.findOne({
+            where: { id: id },
+            relations: ['chatroom'],
+        });
+        const targetChatroom = await this.eventRepository.findOne({
+            where: { room_id: addChatroomDto.room_id },
+        });
+        targetSharing.chatroom = targetChatroom;
+        await this.sharingsRepository.save(targetSharing);
+    }
 };
 SharingsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(sharing_entity_1.Sharing)),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(2, (0, typeorm_1.InjectRepository)(event_entity_1.Event)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository])
 ], SharingsService);
 exports.SharingsService = SharingsService;

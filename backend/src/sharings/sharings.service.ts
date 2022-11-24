@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Event } from 'src/events/entity/event.entity';
 import { User } from 'src/users/entity/user.entity';
 import { Repository } from 'typeorm';
+import { AddChatroomDto } from './dto/addChatroomDto';
+
 import { AddPassengerDto } from './dto/addPassengerDto';
 import { Sharing } from './entity/sharing.entity';
 
@@ -13,6 +16,9 @@ export class SharingsService {
 
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    @InjectRepository(Event)
+    private eventRepository: Repository<Event>,
   ) {}
 
   async findSharingAll(): Promise<Sharing[]> {
@@ -27,11 +33,12 @@ export class SharingsService {
   }
 
   async createSharing(sharing: Sharing): Promise<void> {
-    this.sharingsRepository.save(sharing);
+    await sharing.passengers.push(sharing.author);
+    await this.sharingsRepository.save(sharing);
   }
 
   async deleteSharing(sharing: Sharing): Promise<void> {
-    this.sharingsRepository.delete(sharing);
+    await this.sharingsRepository.delete(sharing);
   }
 
   async updateSharing(id, sharing: Sharing): Promise<void> {
@@ -39,7 +46,6 @@ export class SharingsService {
       title: sharing.title,
       content: sharing.content,
       author: sharing.author,
-      car: sharing.car,
       passengers: sharing.passengers,
     });
   }
@@ -56,6 +62,18 @@ export class SharingsService {
       where: { id: addPassengerDto.passengerId },
     });
     targetSharing.passengers.push(targetUser);
+    await this.sharingsRepository.save(targetSharing);
+  }
+
+  async addChatroom(id: number, addChatroomDto: AddChatroomDto): Promise<void> {
+    const targetSharing = await this.sharingsRepository.findOne({
+      where: { id: id },
+      relations: ['chatroom'],
+    });
+    const targetChatroom = await this.eventRepository.findOne({
+      where: { room_id: addChatroomDto.room_id },
+    });
+    targetSharing.chatroom = targetChatroom;
     await this.sharingsRepository.save(targetSharing);
   }
 }
