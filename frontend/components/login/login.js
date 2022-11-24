@@ -9,7 +9,7 @@ export default function Login() {
   const router = useRouter();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [LinkToHome, setLinkToHome] = useState("http://localhost:3000/");
+  const [LinkToHome, setLinkToHome] = useState("http://localhost:3000/index");
   const handleEmailChange = (e) => {
     // <- input값으로 text 변경 함수
     console.log(e.target.value);
@@ -39,11 +39,11 @@ export default function Login() {
         })
         .then((res) => {
           console.log(res.data);
-          linkToPage("http://localhost:3000/home");
+          linkToPage("/home");
         })
         .catch((err) => {
           console.log(err.message);
-          linkToPage("http://localhost:3000/");
+          linkToPage("/");
         });
     }
   };

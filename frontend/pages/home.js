@@ -9,7 +9,6 @@ import axios from "axios";
 
 export default function Home(props) {
   const { posts } = props;
-  const [Posts, setPosts] = useState([]);
   const [isVisibleForBottomDrawer, setisVisibleForBottomDrawer] =
     useState(false);
   const [PostKey, setPostKey] = useState(0);
@@ -72,7 +71,7 @@ export default function Home(props) {
       <Layout>
         <div className="flex flex-col items-center justify-center  z-0">
           {posts.map((e, i) => (
-            <div key={i} className="flex flex-col px-5 py-3">
+            <div key={i} className="flex flex-col px-5 py-3 w-full">
               <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -223,7 +222,19 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const response = await axios.get("http://localhost:3000/sharings");
+  try {
+    const response = await axios.get("/sharings");
+  } catch (error) {
+    console.log(error);
+    var response = {};
+    response["data"] = [
+      {
+        id: "00",
+        title: "여기는 제목입니다.",
+        content: "여기는 내용입니다.",
+      },
+    ];
+  }
 
   return {
     props: {

@@ -55,11 +55,11 @@ export default function Register() {
         })
         .then((res) => {
           console.log(res.data);
-          linkToPage("http://localhost:3000/congratulations");
+          linkToPage("/congratulations");
         })
         .catch((err) => {
           console.log(err.message);
-          linkToPage('"http://localhost:3000/register"');
+          linkToPage('"/register"');
         });
     }
   };
