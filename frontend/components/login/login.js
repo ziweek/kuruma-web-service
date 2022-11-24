@@ -89,7 +89,7 @@ export default function Login() {
                   <div className="flex items-start"></div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-gray-600"
                   >
                     아이디 / 비밀번호 찾기
                   </a>
@@ -97,17 +97,17 @@ export default function Login() {
                 {/* <Link href={LinkToHome}> */}
                 <button
                   // type="submit"
-                  className="w-full text-white bg-[#1F2B44] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-[#1F2B44] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#F2C148] dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                   onClick={loginAPI}
                 >
-                  <a>로그인</a>
+                  <a className="dark:text-black">로그인</a>
                 </button>
                 {/* </Link> */}
                 <p className="pt-2.5 text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                   서비스를 처음 사용하시나요? <br />
                   <a
                     href="/register"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-primary-600 hover:underline dark:text-gray-600"
                   >
                     고려대학교 이메일로 회원가입
                   </a>
