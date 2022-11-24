@@ -2,9 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/register": "pages/register.js",
   "/chatroom": "pages/chatroom.js",
-  "/congratulations": "pages/congratulations.js",
-  "/home": "pages/home.js",
   "/": "pages/index.js"
 }
