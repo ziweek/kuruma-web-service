@@ -2,8 +2,13 @@ import Layout from "../components/layout";
 import Message from "../components/chatroom/message";
 import ChatCard from "../components/chatroom/chatcard";
 import Head from "next/head";
+import { useEffect } from "react";
 
 export default function ChatRoom() {
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
+
   return (
     <div>
       <Head>
@@ -47,6 +52,7 @@ export default function ChatRoom() {
             text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
           />
           <ChatCard
+            className="focus:"
             type="receive"
             text="같이 같은 과실이 우리 풍부하게 때문이다. 얼음이 뛰노는 찬미를 예가 운다."
           />

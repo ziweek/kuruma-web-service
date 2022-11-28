@@ -14,7 +14,7 @@ export default function Message() {
           ></textarea>
           <button
             type="submit"
-            className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+            className="inline-flex justify-center p-2 text-[#1F2B44] rounded-full cursor-pointer hover:bg-blue-100 dark:text-[#F2C148] dark:hover:bg-gray-600"
           >
             <svg
               aria-hidden="true"

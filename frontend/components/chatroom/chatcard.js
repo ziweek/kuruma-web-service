@@ -13,10 +13,16 @@ export default function ChatCard(prop) {
             className={
               prop.type === "receive"
                 ? "bg-[#CBCDD1] max-w-sm p-3 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
-                : "bg-[#F2C148] max-w-sm p-3 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+                : "bg-[#F2C148] max-w-sm p-3 border border-gray-200 rounded-lg shadow-md dark:border-gray-700"
             }
           >
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p
+              className={
+                prop.type === "receive"
+                  ? "mb-3 font-normal text-gray-700 dark:text-gray-400"
+                  : "mb-3 font-normal text-gray-700 dark:text-gray-900"
+              }
+            >
               {prop.text}
             </p>
           </div>

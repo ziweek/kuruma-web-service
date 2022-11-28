@@ -1,6 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
-import imgLogoMoon from "../../public/images/logo_moon.png";
+import imgLogoYellow from "../../public/images/tabam _logo_yellow_4x.png";
+import imgLogoNavy from "../../public/images/tabam_logo_navy_4x.png";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -52,14 +53,24 @@ export default function Login() {
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 min-h-screen">
-          <a
-            href="/"
-            className="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-          >
-            <Image src={imgLogoMoon} className="pb-5" alt="imgLogoMoon" />
-            {/* <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"> */}
-            TABAM
-          </a>
+          <button type="button">
+            <a className="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+              <Image
+                src={imgLogoNavy}
+                className="pb-5 dark:hidden"
+                alt="imgLogoMoon"
+                height={60}
+              />
+              <Image
+                src={imgLogoYellow}
+                className="pb-5 hidden dark:block"
+                alt="imgLogoMoon"
+                height={60}
+              />
+              {/* <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"> */}
+              {/* TABAM */}
+            </a>
+          </button>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <div className="pt-5 space-y-4 md:space-y-6" action="#">

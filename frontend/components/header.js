@@ -1,17 +1,29 @@
 import Image from "next/image";
-import imgLogoMoon from "../public/images/logo_moon_64.png";
+import imgLogoYellow from "../public/images/tabam_logo_yellow.png";
+import imgLogoNavy from "../public/images/tabam_logo_navy.png";
 
 export default function Header() {
   return (
     <>
       <header>
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 w-full">
-          <div className="container flex flex-wrap items-center justify-between mx-auto">
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full">
+          <div className="container flex flex-wrap items-center justify-between mx-auto pl-2.5">
             <a className="flex items-center">
-              <Image src={imgLogoMoon} alt="Flowbite Logo" height={30} />
-              <span className="pl-2.5 self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              <Image
+                src={imgLogoNavy}
+                className="block dark:hidden"
+                alt="Flowbite Logo"
+                height={25}
+              />
+              <Image
+                src={imgLogoYellow}
+                className="hidden dark:block"
+                alt="Flowbite Logo hidden dark:block"
+                height={25}
+              />
+              {/* <span className="pl-2.5 self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                 TABAM
-              </span>
+              </span> */}
             </a>
             <button
               data-collapse-toggle="navbar-default"
@@ -35,7 +47,7 @@ export default function Header() {
                 ></path>
               </svg>
             </button>
-            <div
+            {/* <div
               className="hidden w-full md:block md:w-auto"
               id="navbar-default"
             >
@@ -82,7 +94,7 @@ export default function Header() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </nav>
       </header>

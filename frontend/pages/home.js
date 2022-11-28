@@ -1,9 +1,6 @@
-import Card from "../components/home/card";
 import Layout from "../components/layout";
 import Head from "next/head";
-import PostDetail from "../components/home/postDetail";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import axios from "axios";
 
 export default function Home(props) {
