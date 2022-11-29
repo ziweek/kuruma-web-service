@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import imgLogoMoon from "../../public/images/logo_moon_64.png";
 import imgLogoYellow from "../../public/images/tabam _logo_yellow_4x.png";
 import imgLogoNavy from "../../public/images/tabam_logo_navy_4x.png";
 import { useState } from "react";
@@ -54,6 +55,12 @@ export default function Login() {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 min-h-screen">
           <button type="button">
             <a className="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+              <Image
+                src={imgLogoMoon}
+                className="pb-5"
+                alt="imgLogoMoon"
+                height={60}
+              />
               <Image
                 src={imgLogoNavy}
                 className="pb-5 dark:hidden"

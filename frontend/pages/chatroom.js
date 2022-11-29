@@ -3,24 +3,16 @@ import Message from "../components/chatroom/message";
 import ChatCard from "../components/chatroom/chatcard";
 import Head from "next/head";
 import { useEffect } from "react";
-import { io, initSocketConnection } from "socket.io-client";
+import { io } from "socket.io-client";
 
 export default function ChatRoom() {
-  const socket = io("http://localhost:80/chat", {
-    reconnectionDelayMax: 10000,
-    auth: {
-      token: "123",
-    },
-    query: {
-      "my-key": "my-value",
-    },
-  });
+  const socket = io("http://localhost:80/chat");
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-    // initSocketConnection();
+    socket.on("message", "asd");
     return () => {
-      // disconnectSocket();
+      socket.off("message", "messageHandler");
     };
   }, []);
 
