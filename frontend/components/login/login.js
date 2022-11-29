@@ -27,7 +27,6 @@ export default function Login() {
       shallow: true,
     });
   };
-
   const loginAPI = async () => {
     console.log("loginAPI");
     console.log(Email);
