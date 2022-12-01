@@ -55,6 +55,8 @@ export class EventsGateway
 
   handleConnection(@ConnectedSocket() socket: Socket) {
     this.logger.log(`${socket.id} 소켓 연결`);
+    // createdRooms.push(socket.id);
+    // console.log(createdRooms);
 
     // socket.broadcast.emit('message', {
     //   message: `${socket.id}가 들어왔습니다.`,
